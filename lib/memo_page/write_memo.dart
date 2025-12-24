@@ -14,7 +14,13 @@ class WriteMemo extends StatelessWidget {
       String textValue = titleController.text;
       String descriptionValue = descriptionController.text;
 
-      onCreate(MemoEntity(title: textValue, description: descriptionValue));
+      onCreate(
+        MemoEntity(
+          title: textValue,
+          description: descriptionValue,
+          createdAt: DateTime.now(),
+        ),
+      );
       Navigator.pop(context);
     }
 
