@@ -19,7 +19,10 @@ class NormalList extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DetailPage()),
+              MaterialPageRoute(
+                builder: (context) =>
+                    DetailPage(index: index, memolist: memoList),
+              ),
             );
           },
           child: ListItem(memoList: memoList, index: index),

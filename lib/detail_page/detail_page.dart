@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mini_memo/memo_entity/memo_entity.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key, required this.index, required this.memolist});
+  const DetailPage({super.key, required this.memolist, required this.index});
 
   final List<MemoEntity> memolist;
   final int index;
 
   @override
   Widget build(BuildContext context) {
+    final d = memolist[index].createdAt;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -24,15 +25,15 @@ class DetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 1. 카테고리나 날짜 표시
-            const Text(
-              "memolist",
+            Text(
+              "${d.year}.${d.month.toString().padLeft(2, '0')}.${d.day.toString().padLeft(2, '0')}",
               style: TextStyle(color: Colors.grey, fontSize: 14),
             ),
             const SizedBox(height: 12),
 
             // 2. 제목
-            const Text(
-              "할일 제목",
+            Text(
+              memolist[index].title,
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -46,8 +47,8 @@ class DetailPage extends StatelessWidget {
             const SizedBox(height: 24),
 
             // 4. 세부 내용
-            const Text(
-              "여기에 상세한 메모 내용을 적습니다. 여기에 상세한 메모 내용을 적습니다. 여기에 상세한 메모 내용을 적습니다. ",
+            Text(
+              memolist[index].description ?? "",
               style: TextStyle(
                 fontSize: 18,
                 height: 1.6,

@@ -33,7 +33,10 @@ class BookList extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DetailPage()),
+              MaterialPageRoute(
+                builder: (context) =>
+                    DetailPage(index: index, memolist: memolist),
+              ),
             );
             //
           },
