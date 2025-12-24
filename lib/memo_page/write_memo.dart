@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mini_memo/memo_entity/memo_entity.dart';
 
 class WriteMemo extends StatelessWidget {
+  const WriteMemo({super.key, required this.onCreate});
+  final void Function(MemoEntity) onCreate;
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController titleController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
+
+    void onSave() {
+      String textValue = titleController.text;
+      String descriptionValue = descriptionController.text;
+
+      onCreate(MemoEntity(title: textValue, description: descriptionValue));
+      Navigator.pop(context);
+    }
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -10,6 +25,7 @@ class WriteMemo extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: TextField(
+            controller: titleController,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: "제목",
@@ -26,7 +42,12 @@ class WriteMemo extends StatelessWidget {
             IconButton(onPressed: () {}, icon: Icon(Icons.import_contacts)),
             IconButton(onPressed: () {}, icon: Icon(Icons.add)),
             IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-            TextButton(onPressed: () {}, child: Text(" 저장")),
+            TextButton(
+              onPressed: () {
+                onSave();
+              },
+              child: Text(" 저장"),
+            ),
           ],
           elevation: 0,
         ),
@@ -36,6 +57,7 @@ class WriteMemo extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  controller: descriptionController,
                   decoration: InputDecoration(border: InputBorder.none),
                   maxLines: null,
                   textAlignVertical: TextAlignVertical.top,

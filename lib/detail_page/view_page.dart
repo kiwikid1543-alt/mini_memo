@@ -32,10 +32,7 @@ class _MemoViewPageState extends State<MemoViewPage> {
             ),
           ],
         ),
-        // isBookList
-        //     ?
-        Expanded(child: BookList()),
-        // : Expanded(child: NormalList()),
+        Expanded(child: isBookList ? const BookList() : const NormalList()),
       ],
     );
   }

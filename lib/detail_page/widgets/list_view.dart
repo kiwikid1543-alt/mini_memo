@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_memo/detail_page/widgets/book_cover_widget.dart';
+import 'package:mini_memo/detail_page/widgets/list_item.dart';
 
 class NormalList extends StatelessWidget {
   const NormalList({super.key});
@@ -7,10 +7,11 @@ class NormalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      separatorBuilder: (_, _) => const SizedBox(width: 12),
+      padding: const EdgeInsets.all(16),
       itemCount: 10,
+      separatorBuilder: (_, _) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
-        return SizedBox(child: BookCoverWidget(coverColor: Colors.white));
+        return ListItem();
       },
     );
   }

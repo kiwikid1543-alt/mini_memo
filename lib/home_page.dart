@@ -14,6 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<MemoEntity> memoList = [];
 
+  void onCreate(MemoEntity newMemo) {
+    setState(() {
+      memoList.add(newMemo);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +29,9 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => WriteMemo()),
+            MaterialPageRoute(
+              builder: (context) => WriteMemo(onCreate: onCreate),
+            ),
           );
         },
         child: Icon(Icons.edit_square),
@@ -38,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           memoList.isEmpty
               ? EmptyPage()
-              : SizedBox(height: 600, child: MemoViewPage()),
+              : const Expanded(child: MemoViewPage()),
         ],
       ),
     );

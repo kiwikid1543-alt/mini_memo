@@ -19,9 +19,8 @@ class BookList extends StatelessWidget {
       Colors.grey.shade300,
     ];
 
-    return ListView.separated(
+    return ListView.builder(
       scrollDirection: Axis.horizontal,
-      separatorBuilder: (_, _) => const SizedBox(width: 12),
       itemCount: 20,
       itemBuilder: (context, index) {
         final randomColor = bookPalette[Random().nextInt(bookPalette.length)];
