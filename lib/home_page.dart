@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           memoList.isEmpty
               ? EmptyPage()
-              : const Expanded(child: MemoViewPage()),
+              : Expanded(child: MemoViewPage(memoList: memoList)),
         ],
       ),
     );

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mini_memo/memo_entity/memo_entity.dart';
 
 class BookCoverWidget extends StatelessWidget {
-  const BookCoverWidget({super.key, required this.coverColor});
+  const BookCoverWidget({
+    super.key,
+    required this.coverColor,
+    required this.memoList,
+    required this.index,
+  });
 
   final Color coverColor;
+  final List<MemoEntity> memoList;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +44,13 @@ class BookCoverWidget extends StatelessWidget {
             child: Stack(
               children: [
                 Container(width: 30, color: Colors.black87),
-                const Center(
+                Center(
                   child: Padding(
                     padding: EdgeInsets.only(left: 30),
-                    child: Text("제목이 들어가는 텍스트", style: TextStyle(fontSize: 18)),
+                    child: Text(
+                      memoList[index].title,
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
               ],

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mini_memo/detail_page/detail_page.dart';
 import 'package:mini_memo/detail_page/widgets/book_cover_widget.dart';
 import 'dart:math';
 
+import 'package:mini_memo/memo_entity/memo_entity.dart';
+
 class BookList extends StatelessWidget {
-  const BookList({super.key});
+  const BookList({super.key, required this.memolist});
+
+  final List<MemoEntity> memolist;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +26,25 @@ class BookList extends StatelessWidget {
 
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: 20,
+      itemCount: memolist.length,
       itemBuilder: (context, index) {
         final randomColor = bookPalette[Random().nextInt(bookPalette.length)];
-        return SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: BookCoverWidget(coverColor: randomColor),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DetailPage()),
+            );
+            //
+          },
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: BookCoverWidget(
+              coverColor: randomColor,
+              memoList: memolist,
+              index: index,
+            ),
+          ),
         );
       },
     );
