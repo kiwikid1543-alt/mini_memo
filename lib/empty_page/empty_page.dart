@@ -5,8 +5,36 @@ class EmptyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("아무것도 없는 페이지"));
-  }
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.grey[200],
+      ),
 
-  //
+      child: Column(
+        children: [
+          Text(
+            "📝",
+            style: TextStyle(
+              fontSize: 50,
+              //
+            ),
+          ),
+          Text(
+            "메모없음",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 50,
+              fontWeight: FontWeight.w500,
+              //
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
