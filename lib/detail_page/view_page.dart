@@ -38,7 +38,7 @@ class _MemoViewPageState extends State<MemoViewPage> {
         Expanded(
           child: isBookList
               ? BookList(memolist: widget.memoList)
-              : NormalList(),
+              : NormalList(memoList: widget.memoList),
         ),
       ],
     );
