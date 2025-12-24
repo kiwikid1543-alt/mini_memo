@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_memo/detail_page/view_page.dart';
 import 'package:mini_memo/memo_page/write_memo.dart';
 import 'package:mini_memo/empty_page/empty_page.dart';
 
@@ -8,6 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: Colors.white,
@@ -28,7 +30,7 @@ class HomePage extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(children: [EmptyPage()]),
+      body: Column(children: [EmptyPage(), SizedBox(height: 600, child: MemoViewPage())]),
     );
   }
 }
