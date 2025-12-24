@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mini_memo/detail_page/view_page.dart';
+import 'package:mini_memo/memo_entity/memo_entity.dart';
 import 'package:mini_memo/memo_page/write_memo.dart';
 import 'package:mini_memo/empty_page/empty_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<MemoEntity> memoList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: Colors.white,
@@ -21,16 +28,19 @@ class HomePage extends StatelessWidget {
         },
         child: Icon(Icons.edit_square),
       ),
-      
-    ),
-      //appBar 은성
       appBar: AppBar(
         title: Text(
           '동 주니어',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(children: [EmptyPage(), SizedBox(height: 600, child: MemoViewPage())]),
+      body: Column(
+        children: [
+          memoList.isEmpty
+              ? EmptyPage()
+              : SizedBox(height: 600, child: MemoViewPage()),
+        ],
+      ),
     );
   }
 }
